@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { VFXProvider, VFXSpan } from "react-vfx";
 
 let time = new Date();
 const date = time.toDateString();
@@ -23,10 +24,12 @@ function Clock() {
     }, [realTime]);
     
     return (
-        <div>
-            <div><h1>{days[today]} {dayNum} {months[month]} {year}</h1></div>
-            <div><h3>{realTime}</h3></div>
-        </div>
+        <VFXProvider>
+            <VFXSpan shader='pixelateTransition'>{days[today]} {dayNum} {months[month]} {year}</VFXSpan>
+            <br />
+            <br />
+            <VFXSpan>{realTime}</VFXSpan>
+        </VFXProvider>
     )}
 
 export default Clock
